@@ -2,7 +2,7 @@
 
 ## 1. Introduction
 
-**Thresholding logic** is one of the fundamental ideas behind early artificial neural network models. It was inspired by the behavior of biological neurons, where a neuron generates an output only when the incoming stimulation reaches a certain level.
+**Thresholding logic** is one of the fundamental ideas behind early artificial neural network models. It was inspired by the behavior of biological neurons, where a neuron generates an output only when its input exceeds a certain level.
 
 Early models such as the **McCulloch–Pitts (M-P) neuron** used a simple **threshold function** to decide whether the neuron should fire or remain inactive.
 
@@ -16,21 +16,20 @@ If the weighted sum reaches or exceeds the threshold, the neuron produces an out
 
 The basic equation is:
 
-[
-y =
-\begin{cases}
-1, & \text{if } \sum_{i=1}^{n} w_i x_i \geq \theta\
+$$
+y = \begin{cases}
+1, & \text{if } \sum_{i=1}^{n} w_i x_i \geq \theta \\
 0, & \text{if } \sum_{i=1}^{n} w_i x_i < \theta
 \end{cases}
-]
+$$
 
 Where:
 
-* (x_i) = input values
-* (w_i) = weights associated with inputs
-* (\theta) = threshold
-* (y) = output
-* (\sum w_i x_i) = weighted sum
+* $x_i$ = input values
+* $w_i$ = weights associated with inputs
+* $\theta$ = threshold
+* $y$ = output
+* $\sum w_i x_i$ = weighted sum
 
 The threshold acts like a **decision boundary**.
 
@@ -46,9 +45,9 @@ The neuron receives several input signals.
 
 For example:
 
-[
-x_1=1,\quad x_2=1
-]
+$$
+x_1 = 1,\quad x_2 = 1
+$$
 
 ### Step 2: Apply weights
 
@@ -56,29 +55,29 @@ Each input is multiplied by its corresponding weight.
 
 For example:
 
-[
-w_1=1,\quad w_2=1
-]
+$$
+w_1 = 1,\quad w_2 = 1
+$$
 
 Therefore:
 
-[
-w_1x_1+w_2x_2=(1)(1)+(1)(1)=2
-]
+$$
+w_1 x_1 + w_2 x_2 = (1)(1) + (1)(1) = 2
+$$
 
 ### Step 3: Compare with threshold
 
 Suppose the threshold is:
 
-[
-\theta=2
-]
+$$
+\theta = 2
+$$
 
 The neuron compares:
 
-[
+$$
 2 \geq 2
-]
+$$
 
 This condition is true.
 
@@ -86,15 +85,15 @@ This condition is true.
 
 Therefore:
 
-[
-y=1
-]
+$$
+y = 1
+$$
 
 If the weighted sum had been less than 2, the output would have been:
 
-[
-y=0
-]
+$$
+y = 0
+$$
 
 ---
 
@@ -102,7 +101,12 @@ y=0
 
 The threshold function is also called a **step function** or **binary activation function**.
 
-y(x)=\begin{cases}0,&x<\theta\1,&x\geq\theta\end{cases}
+$$
+y(x) = \begin{cases}
+0, & x < \theta \\
+1, & x \geq \theta
+\end{cases}
+$$
 
 It produces only two possible outputs:
 
@@ -119,23 +123,23 @@ Thresholding logic can be used to implement an **AND gate**.
 
 Consider:
 
-[
-x_1,x_2 \in {0,1}
-]
+$$
+x_1, x_2 \in \{0,1\}
+$$
 
 Let:
 
-[
-w_1=w_2=1
-]
+$$
+w_1 = w_2 = 1
+$$
 
 and threshold:
 
-[
-\theta=2
-]
+$$
+\theta = 2
+$$
 
-| (x_1) | (x_2) | Weighted Sum | Output |
+| $x_1$ | $x_2$ | Weighted Sum | Output |
 | ----: | ----: | -----------: | -----: |
 |     0 |     0 |            0 |      0 |
 |     0 |     1 |            1 |      0 |
@@ -177,4 +181,4 @@ Although thresholding was powerful for early models, it had several limitations:
 
 ## 8. Conclusion
 
-Thresholding logic provided the basic **decision-making mechanism** for early artificial neurons. The neuron calculates a weighted sum of its inputs and compares it with a threshold. If the threshold is reached, it produces **1**, otherwise **0**. This simple idea formed the foundation for models such as the **McCulloch–Pitts neuron and perceptron**, ultimately leading to modern artificial neural networks and deep learning.
+Thresholding logic provided the basic **decision-making mechanism** for early artificial neurons. The neuron calculates a weighted sum of its inputs and compares it with a threshold. If the threshold is reached or exceeded, the neuron "fires" (outputs 1); otherwise it remains inactive (outputs 0).
