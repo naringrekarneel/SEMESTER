@@ -1,0 +1,335 @@
+# Topic 1: Gradient Descent (GD)
+
+This is the **foundation** of all optimization algorithms. Every advanced optimizer (Momentum, Adam, RMSProp, etc.) is basically an improvement over Gradient Descent.
+
+---
+
+# ELI5 Explanation 🧒
+
+Imagine you're standing on top of a foggy mountain.
+
+Your goal is to reach the **lowest point (valley).**
+
+Because of the fog, you cannot see the whole mountain.
+
+So what do you do?
+
+You simply check:
+
+> "Which direction is downhill?"
+
+Take one step.
+
+Again check.
+
+Take another step.
+
+Repeat until you reach the bottom.
+
+That's exactly how Gradient Descent works.
+
+* Mountain = Loss Function
+* Valley = Minimum Loss
+* You = Neural Network
+* Steps = Updating Weights
+
+---
+
+# Real-World Intuition
+
+Suppose you're learning basketball.
+
+At first, you miss many shots.
+
+Your coach tells you your mistakes.
+
+You slightly adjust your technique.
+
+You try again.
+
+Eventually you become better.
+
+The coach's feedback is like the **gradient**.
+
+Your adjustment is the **gradient descent update.**
+
+---
+
+# Why Do We Need Gradient Descent?
+
+Neural networks contain **millions of weights.**
+
+Example:
+
+```
+Weight 1 = 0.42
+Weight 2 = -0.85
+Weight 3 = 1.21
+...
+Weight 1,000,000
+```
+
+We need a way to automatically improve these weights.
+
+Gradient Descent tells every weight:
+
+> "Move a little in the direction that reduces error."
+
+---
+
+# Important Terms
+
+## 1. Loss Function
+
+Measures how wrong the prediction is.
+
+Examples:
+
+* Mean Squared Error (Regression)
+* Cross Entropy (Classification)
+
+Smaller loss = Better model.
+
+---
+
+## 2. Gradient
+
+Gradient tells us
+
+> "Which direction increases the loss the fastest?"
+
+To decrease loss,
+
+we move in the **opposite direction.**
+
+---
+
+## 3. Learning Rate (η)
+
+Learning rate decides **how big each step should be.**
+
+Very small learning rate:
+
+```
+🐢
+Tiny steps
+
+Training becomes very slow.
+```
+
+Very large learning rate:
+
+```
+🏃
+
+Jumps everywhere
+
+Never reaches minimum.
+```
+
+Good learning rate:
+
+```
+🙂
+
+Steady movement
+
+Reaches minimum efficiently.
+```
+
+---
+
+# Core Formula ⭐⭐⭐⭐⭐
+
+Gradient Descent updates every weight using:
+
+[
+\boxed{W_{new}=W_{old}-\eta \frac{\partial L}{\partial W}}
+]
+
+Where:
+
+| Symbol                          | Meaning       |
+| ------------------------------- | ------------- |
+| (W)                             | Weight        |
+| (L)                             | Loss          |
+| (\frac{\partial L}{\partial W}) | Gradient      |
+| (\eta)                          | Learning Rate |
+
+**Must Remember:** New Weight = Old Weight − Learning Rate × Gradient
+
+---
+
+# Step-by-Step Example
+
+Suppose
+
+```
+Current Weight = 8
+
+Gradient = 3
+
+Learning Rate = 0.1
+```
+
+Using the formula:
+
+```
+New Weight
+= 8 - (0.1 × 3)
+
+= 8 - 0.3
+
+= 7.7
+```
+
+The weight moves slightly toward reducing the error.
+
+---
+
+## Another Example
+
+```
+Weight = 5
+
+Gradient = -4
+
+Learning Rate = 0.2
+```
+
+Calculation:
+
+```
+New Weight
+
+= 5 - (0.2 × -4)
+
+= 5 + 0.8
+
+= 5.8
+```
+
+Notice:
+
+Negative gradient causes the weight to increase.
+
+The update always moves in the direction that reduces the loss.
+
+---
+
+# Visual Idea
+
+```
+Loss
+
+^
+|
+|      ● Start
+|      \
+|       \
+|        \
+|         \
+|          \
+|           ●
+|            \
+|             ●
+|              \
+|_______________●__________> Weight
+
+          Minimum Loss
+```
+
+Each dot represents one Gradient Descent update.
+
+---
+
+# Gradient Descent Algorithm
+
+1. Initialize weights randomly.
+2. Pass training data through the network (Forward Pass).
+3. Calculate the loss.
+4. Compute gradients using Backpropagation.
+5. Update weights using the Gradient Descent formula.
+6. Repeat until the loss stops decreasing or a stopping criterion is met.
+
+Flow:
+
+```
+Initialize Weights
+        ↓
+Forward Pass
+        ↓
+Calculate Loss
+        ↓
+Backpropagation
+        ↓
+Compute Gradients
+        ↓
+Update Weights
+        ↓
+Repeat
+```
+
+---
+
+# Advantages
+
+* Simple to understand.
+* Easy to implement.
+* Foundation of all modern optimizers.
+* Works well for many machine learning problems.
+
+---
+
+# Disadvantages
+
+* Can be slow on large datasets.
+* May get stuck in local minima or saddle points.
+* Sensitive to the learning rate.
+* Full Batch Gradient Descent requires processing the entire dataset before every update.
+
+---
+
+# Exam/Interview Must-Remember Points
+
+| Question                         | Answer                                              |
+| -------------------------------- | --------------------------------------------------- |
+| Purpose of Gradient Descent?     | Minimize the loss function.                         |
+| What does the gradient indicate? | Direction of steepest increase in loss.             |
+| Why subtract the gradient?       | To move toward lower loss.                          |
+| What is the learning rate?       | Controls the step size of each update.              |
+| Formula?                         | (W_{new}=W_{old}-\eta\frac{\partial L}{\partial W}) |
+
+---
+
+# Quick Revision Sheet
+
+* Gradient Descent minimizes the loss function.
+* Weights are updated iteratively.
+* Uses gradients computed by backpropagation.
+* Learning rate controls update size.
+* Too small learning rate → slow convergence.
+* Too large learning rate → overshooting or divergence.
+* Foundation of optimizers like Momentum, RMSProp, and Adam.
+
+---
+
+# Active Learning
+
+### Conceptual Questions
+
+1. Why do we move in the **opposite** direction of the gradient instead of following it?
+2. What happens if the learning rate is extremely large?
+3. In one sentence, what is the purpose of Gradient Descent?
+
+### Practical Question
+
+A neural network has:
+
+* Weight = **12**
+* Gradient = **5**
+* Learning Rate = **0.2**
+
+Using the Gradient Descent update rule, calculate the **new weight**.
+
+Reply with your answers, and I'll check them before moving on to **Topic 2: Stochastic Gradient Descent (SGD) & Mini-batch Gradient Descent**.
