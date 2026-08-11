@@ -1,0 +1,44 @@
+Unit I
+Introduction To Deep Learning: Introduction to Deep Learning: Basics: Biological Neuron, Idea of
+computational units, History of Deep Learning McCulloch Pitts Neuron, Thresholding Logic,
+Perceptron's, Perceptron Learning Algorithm, Multilayer Perceptron's (MLPs), Representation Power
+of MLPs, Activation Functions: Sigmoid, Tanh, ReLU, Softmax, Loss Functions: MSE, Cross
+Entropy, Gradient Descent, Backpropagation, Feed forward Neural Networks, Representation Power
+of Feed forwardNeural Networks, Model Evaluation Metrics.
+
+Unit II
+Optimization and Regularization:
+Gradient Descent -Gradient Descent (GD), Momentum Based GD, Nesterov Accelerated GD,
+Stochastic GD, AdaGrad, RMSProp, Adam, Learning Rate Scheduling, Weight Initialization (Xavier,
+He Initialization), Bias-Variance Tradeoff.
+Regularization Techniques:Bias Variance Tradeoff, L1/L2 regularization, Early stopping, Dataset
+augmentation, Parameter sharing and tying, Injecting noise at input, Ensemble methods, Dropout,
+Batch Normalization, Hyperparameter Tuning (Grid/Random Search).
+
+Unit III
+Convolutional Neural Networks(CNN):
+Convolution Operation, Padding, Stride, Pooling, CNN Architecture Design, Classic
+Architectures:LeNet, AlexNet, ZF-Net, VGGNet, GoogLeNet, ResNet, Width and Depth of Neural
+Networks, Transfer Learning, Data Augmentation Techniques, Object Detection(YOLO/R-CNN),
+Image Segmentation: Introduction to U-Net, Visualization of CNN, Evaluation for Image Model.
+
+Unit IV
+Sequence Models and Transformers:
+Recurrent Neural Networks, Backpropagation through time (BPTT), Vanishing and Exploding
+Gradients, Truncated BPTT, GRU, LSTMs, Attention Mechanism,Transformer Architecture (High-
+Level), BERT & GPT Overview, Sequence-to-Sequence Models, Applications in NLP:Text
+Classification, Sentiment Analysis, Chatbots, Text Generation.
+
+Unit V
+Advanced Training Strategies:
+Challenges in Deep Network Training,Gradient Clipping,Transfer Learning: Fine-tuning vs Feature
+Training,Model Ensembling, Mixed Precision Training, Model Compression
+&Pruning,Computational Complexity in Deep Learning, Experimental Design & Performance
+Analysis.
+
+Unit VI
+Generative AI and Modern Trends:
+Autoencoders & Variational Autoencoders (VAE), Generative Adversarial Networks (GANs) - Basic
+Concept, Diffusion Models, Introduction to Large Language Models, Prompt Engineering Basics,
+Overview of Hugging Face Ecosystem, Deep Learning in:Healthcare, Autonomous Systems,
+Computer Vision, Speech & Audio, Ethical Issues in Deep Learning, AI Bias & Responsible AI.
