@@ -6,7 +6,7 @@ Absolutely — for a **10-mark exam answer**, write it in a structured compariso
 
 A **biological neuron** is the basic functional unit of the human nervous system. It receives signals from other neurons, processes them, and transmits an electrical signal to other cells.
 
-An **artificial computational unit**, particularly the **McCulloch–Pitts (M-P) neuron**, is a simplified mathematical model inspired by the working of a biological neuron. It was proposed by **Warren McCulloch and Walter Pitts in 1943** and became one of the foundations of artificial neural networks.
+An **artificial computational unit**, particularly the **McCulloch–Pitts (M-P) neuron**, is a simplified mathematical model inspired by the working of a biological neuron. It was proposed by **Wa[...] 
 
 ## 2. Biological Neuron
 
@@ -35,20 +35,19 @@ It:
 
 The basic mathematical representation is:
 
-[
-y =
-\begin{cases}
-1, & \text{if } \sum w_i x_i \geq \theta\
-0, & \text{if } \sum w_i x_i < \theta
+$$
+y = \begin{cases}
+1 & \text{if } \sum_{i} w_i x_i \ge \theta,\\
+0 & \text{if } \sum_{i} w_i x_i < \theta.
 \end{cases}
-]
+$$
 
 where:
 
-* (x_i) = input
-* (w_i) = weight
-* (\theta) = threshold
-* (y) = output
+* $x_i$ = input
+* $w_i$ = weight
+* $\theta$ = threshold
+* $y$ = output
 
 ---
 
@@ -78,34 +77,34 @@ Consider an **AND operation** using an M-P neuron.
 
 Let:
 
-* (x_1 = 1)
-* (x_2 = 1)
-* (w_1 = w_2 = 1)
-* Threshold (\theta = 2)
+* $x_1 = 1$
+* $x_2 = 1$
+* $w_1 = w_2 = 1$
+* Threshold ($\theta = 2$)
 
 Weighted sum:
 
-[
-(1\times1)+(1\times1)=2
-]
+$$
+(1 \times 1) + (1 \times 1) = 2
+$$
 
 Since the sum is equal to the threshold:
 
-[
-y=1
-]
+$$
+y = 1
+$$
 
-For inputs (x_1=1) and (x_2=0):
+For inputs $x_1 = 1$ and $x_2 = 0$:
 
-[
-(1\times1)+(0\times1)=1
-]
+$$
+(1 \times 1) + (0 \times 1) = 1
+$$
 
-Since (1 < 2):
+Since $1 < 2$:
 
-[
-y=0
-]
+$$
+y = 0
+$$
 
 Thus, the M-P neuron can implement simple logical operations such as **AND, OR and NOT**.
 
@@ -117,4 +116,4 @@ The M-P neuron is therefore an abstraction of the basic **"receive → integrate
 
 ## 7. Conclusion
 
-A biological neuron is a complex living cell capable of communication, learning and adaptation, whereas the McCulloch–Pitts neuron is a simplified mathematical representation of neuronal behavior. The M-P model ignores many biological complexities and represents neuron activity using inputs, weights and a threshold. Despite its simplicity, it provided the fundamental idea behind **artificial neural networks and modern deep learning**.
+A biological neuron is a complex living cell capable of communication, learning and adaptation, whereas the McCulloch–Pitts neuron is a simplified mathematical representation of neuronal behavi[...]
