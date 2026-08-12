@@ -146,6 +146,7 @@ $$
 H_2 = f(-A - B)
 $$
 
+$$
 \[
 \begin{aligned}
 (A=B=0): &\quad \text{sum}=0 \; (\ge -1) \rightarrow H_2=1,\\
@@ -154,6 +155,7 @@ $$
 (A=B=1): &\quad \text{sum}=-2 \; (< -1) \rightarrow H_2=0.
 \end{aligned}
 \]
+$$
 
 So:
 
