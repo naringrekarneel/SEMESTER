@@ -16,34 +16,27 @@ During backpropagation, gradients are calculated using the **chain rule**.
 
 The gradient passed to an earlier layer is obtained by multiplying several derivatives:
 
-[
-\frac{\partial L}{\partial W}
-=============================
-
-\frac{\partial L}{\partial a_n}
-\frac{\partial a_n}{\partial a_{n-1}}
-\cdots
-\frac{\partial a_1}{\partial W}
-]
+$$
+\frac{\partial L}{\partial W} =
+\frac{\partial L}{\partial a_n}\,
+\frac{\partial a_n}{\partial a_{n-1}}\,\cdots\,\frac{\partial a_1}{\partial W}
+$$
 
 If these derivatives are smaller than 1, repeated multiplication can make the gradient **very close to zero**.
 
 For example:
 
-[
-0.5\times0.5\times0.5\times0.5
-=0.0625
-]
+$$
+0.5\times0.5\times0.5\times0.5 = 0.0625
+$$
 
 With many more layers:
 
-[
-0.5^{10}\approx0.00098
-]
+$$
+0.5^{10} \approx 0.00098
+$$
 
 The gradient becomes tiny.
-
-genui{"differential_calculus_equations_learning_block_staging":{"type_id":"DERIVATIVE","content":"y=x^2"}}
 
 ---
 
@@ -53,15 +46,15 @@ Traditional activation functions such as **Sigmoid** and **Tanh** can saturate.
 
 For Sigmoid:
 
-[
-\sigma'(x)=\sigma(x)(1-\sigma(x))
-]
+$$
+\sigma'(x)=\sigma(x)\bigl(1-\sigma(x)\bigr)
+$$
 
 Its maximum derivative is only:
 
-[
-0.25
-]
+$$
+\max_x \sigma'(x) = 0.25
+$$
 
 For very large positive or negative inputs, the derivative approaches **0**.
 
@@ -94,31 +87,31 @@ In simple words:
 
 It is defined as:
 
-[
-ReLU(x)=\max(0,x)
-]
+$$
+\mathrm{ReLU}(x)=\max(0,x)
+$$
 
 Therefore:
 
-[
-ReLU(x)=
+$$
+\mathrm{ReLU}(x)=
 \begin{cases}
-0, & x<0\
-x, & x\geq0
+0, & x<0\\
+ x, & x\ge 0
 \end{cases}
-]
+$$
 
 Its derivative is:
 
-[
-ReLU'(x)=
+$$
+\mathrm{ReLU}'(x)=
 \begin{cases}
-0, & x<0\
+0, & x<0\\
 1, & x>0
 \end{cases}
-]
+$$
 
-y=\max(0,x)
+So, for positive inputs the gradient is 1.
 
 ---
 
@@ -128,18 +121,17 @@ The key advantage of ReLU is that its derivative is **1 for positive inputs**.
 
 For example, consider several layers with positive activations:
 
-[
+$$
 1\times1\times1\times1=1
-]
+$$
 
 The gradient does not shrink because of the ReLU derivatives.
 
 Compare this with sigmoid:
 
-[
-0.25\times0.25\times0.25\times0.25
-=0.00390625
-]
+$$
+0.25\times0.25\times0.25\times0.25 = 0.00390625
+$$
 
 Thus, ReLU generally allows gradients to propagate through deep networks **more effectively than sigmoid or tanh** in their saturated regions.
 
@@ -163,9 +155,9 @@ ReLU does **not completely solve** the gradient problem.
 
 For negative inputs:
 
-[
-ReLU'(x)=0
-]
+$$
+\mathrm{ReLU}'(x)=0
+$$
 
 Therefore, a neuron can stop learning if it consistently receives negative inputs. This is known as the **dying ReLU problem**.
 
@@ -189,4 +181,4 @@ Variants such as **Leaky ReLU** address this by allowing a small negative slope.
 
 ## 10. Conclusion
 
-The **vanishing gradient problem** occurs when gradients become extremely small while being propagated backward through many layers, causing early layers to learn very slowly. Sigmoid and Tanh are more susceptible because their derivatives become close to zero in saturated regions. **ReLU**, with a derivative of 1 for positive inputs, allows gradients to pass more effectively and therefore makes training deep neural networks easier. However, ReLU can suffer from the **dying ReLU problem**, so variants such as Leaky ReLU are sometimes used.
+The **vanishing gradient problem** occurs when gradients become extremely small while being propagated backward through many layers, causing early layers to learn very slowly. Sigmoid and Tanh are more prone to this in their saturated regions, while ReLU helps mitigate the issue for positive activations but introduces its own limitations (e.g., dying ReLU).
