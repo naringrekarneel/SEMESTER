@@ -10,9 +10,9 @@ An **MLP with one hidden layer** can solve XOR by combining simpler logical func
 
 The key idea is:
 
-[
+$$
 \boxed{XOR=(A\ OR\ B)\ AND\ NOT(A\ AND\ B)}
-]
+$$
 
 ---
 
