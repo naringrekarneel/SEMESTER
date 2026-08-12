@@ -11,7 +11,7 @@ An **MLP with one hidden layer** can solve XOR by combining simpler logical func
 The key idea is:
 
 $$
-\boxed{XOR=(A\ OR\ B)\ AND\ NOT(A\ AND\ B)}
+\boxed{\mathrm{XOR} = (A \lor B) \land \neg(A \land B)}
 $$
 
 ---
@@ -31,8 +31,8 @@ $$
 
 We use:
 
-* **2 input neurons:** (A,B)
-* **2 hidden neurons:** (H_1,H_2)
+* **2 input neurons:** (A, B)
+* **2 hidden neurons:** (H_1, H_2)
 * **1 output neuron:** (Y)
 
 Architecture:
@@ -69,60 +69,60 @@ More explicitly:
 ```
 
 The hidden neurons are designed as:
-$$
-[
-H_1=A\ OR\ B
-]
 
-[
-H_2=NOT(A\ AND\ B)=NAND(A,B)
-]
+$$
+H_1 = A \lor B
+$$
+
+$$
+H_2 = \neg(A \land B) = \mathrm{NAND}(A,B)
+$$
 
 Then:
 
-[
-Y=H_1\ AND\ H_2
-]
 $$
+Y = H_1 \land H_2
+$$
+
 ---
 
 # 4. Weights and Thresholds
 
-We use a **step activation function**:
+We use a **step activation function** (Heaviside-type):
 
-[
+$$
 f(z)=
 \begin{cases}
-1,&z\geq\theta\
-0,&z<\theta
+1, & z \ge \theta \\
+0, & z < \theta
 \end{cases}
-]
+$$
 
 ### Hidden Neuron (H_1): OR
 
 Weights:
 
-[
-w_{A1}=1,\qquad w_{B1}=1
-]
+$$
+w_{A1} = 1, \qquad w_{B1} = 1
+$$
 
 Threshold:
 
-[
-\boxed{\theta_1=1}
-]
+$$
+\theta_1 = 1
+$$
 
 Therefore:
 
-[
-H_1=f(A+B)
-]
+$$
+H_1 = f(A + B)
+$$
 
 This produces:
 
-[
-H_1=A\ OR\ B
-]
+$$
+H_1 = A \lor B
+$$
 
 ---
 
@@ -130,34 +130,34 @@ H_1=A\ OR\ B
 
 For NAND, use negative weights:
 
-[
-w_{A2}=-1,\qquad w_{B2}=-1
-]
+$$
+w_{A2} = -1, \qquad w_{B2} = -1
+$$
 
 Threshold:
 
-[
-\boxed{\theta_2=-1}
-]
+$$
+\theta_2 = -1
+$$
 
 Therefore:
 
-[
-H_2=f(-A-B)
-]
+$$
+H_2 = f(-A - B)
+$$
 
-Check:
+Check (sums shown and step activation applied):
 
-* (A=B=0): sum (=0\geq-1) → (H_2=1)
-* (A=1,B=0): sum (=-1\geq-1) → (H_2=1)
-* (A=0,B=1): sum (=-1\geq-1) → (H_2=1)
-* (A=B=1): sum (=-2<-1) → (H_2=0)
+* (A = B = 0): sum = 0 \(\ge -1\) → H_2 = 1
+* (A = 1, B = 0): sum = -1 \(\ge -1\) → H_2 = 1
+* (A = 0, B = 1): sum = -1 \(\ge -1\) → H_2 = 1
+* (A = B = 1): sum = -2 \(< -1\) → H_2 = 0
 
 So:
 
-[
-H_2=NAND(A,B)
-]
+$$
+H_2 = \mathrm{NAND}(A,B)
+$$
 
 ---
 
@@ -165,31 +165,27 @@ H_2=NAND(A,B)
 
 The output neuron performs:
 
-[
-Y=H_1\ AND\ H_2
-]
+$$
+Y = H_1 \land H_2
+$$
 
-Therefore, use:
+Therefore, use weights:
 
-[
-w_{H_1Y}=1
-]
-
-[
-w_{H_2Y}=1
-]
+$$
+w_{H_1Y} = 1, \qquad w_{H_2Y} = 1
+$$
 
 and threshold:
 
-[
-\boxed{\theta_Y=2}
-]
+$$
+\theta_Y = 2
+$$
 
 Hence:
 
-[
-Y=f(H_1+H_2)
-]
+$$
+Y = f(H_1 + H_2)
+$$
 
 ---
 
@@ -218,26 +214,26 @@ Y=f(H_1+H_2)
 
 | Neuron | Input Weights   | Threshold |
 | ------ | --------------- | --------: |
-| (H_1)  | (A=1,\ B=1)     |     **1** |
-| (H_2)  | (A=-1,\ B=-1)   |    **−1** |
-| (Y)    | (H_1=1,\ H_2=1) |     **2** |
+| (H_1)  | (A=1, B=1)      |     **1** |
+| (H_2)  | (A=-1, B=-1)    |    **−1** |
+| (Y)    | (H_1=1, H_2=1)  |     **2** |
 
 ---
 
 # 7. Verification
 
-| A | B | (H_1=A OR B) | (H_2=NAND) | (Y=H_1 AND H_2) |
-| - | - | -----------: | ---------: | --------------: |
-| 0 | 0 |            0 |          1 |           **0** |
-| 0 | 1 |            1 |          1 |           **1** |
-| 1 | 0 |            1 |          1 |           **1** |
-| 1 | 1 |            1 |          0 |           **0** |
+| A | B | (H_1 = A OR B) | (H_2 = NAND) | (Y = H_1 AND H_2) |
+| - | - | --------------: | -----------: | -----------------: |
+| 0 | 0 |               0 |            1 |              **0** |
+| 0 | 1 |               1 |            1 |              **1** |
+| 1 | 0 |               1 |            1 |              **1** |
+| 1 | 1 |               1 |            0 |              **0** |
 
 Therefore, the final output is:
 
-[
-\boxed{0,\ 1,\ 1,\ 0}
-]
+$$
+\boxed{(0,\,1,\,1,\,0)}
+$$
 
 which is exactly the **XOR truth table**.
 
@@ -249,13 +245,9 @@ A single perceptron cannot separate the two classes of XOR using one straight-li
 
 The hidden layer solves this by creating **intermediate representations**:
 
-[
-(A,B)
-\rightarrow
-(OR,\ NAND)
-\rightarrow
-XOR
-]
+$$
+(A, B) \longrightarrow (\mathrm{OR},\; \mathrm{NAND}) \longrightarrow \mathrm{XOR}
+$$
 
 Thus, the MLP combines multiple simple decision boundaries to create the required **non-linear decision boundary**.
 
@@ -263,4 +255,4 @@ Thus, the MLP combines multiple simple decision boundaries to create the require
 
 ## Conclusion
 
-A 2-input XOR gate can be implemented using an MLP with **2 input neurons, 2 hidden neurons, and 1 output neuron**. The first hidden neuron performs OR, the second performs NAND, and the output neuron performs AND. The required thresholds are **1, −1, and 2**, respectively, with weights ((1,1)), ((-1,-1)), and ((1,1)). This demonstrates the ability of an MLP to solve the **non-linearly separable XOR problem**, which a single perceptron cannot solve.
+A 2-input XOR gate can be implemented using an MLP with **2 input neurons, 2 hidden neurons, and 1 output neuron**. The first hidden neuron performs OR, the second performs NAND, and the output neuron computes their AND to produce XOR.
