@@ -6,13 +6,13 @@ The **McCulloch–Pitts (M-P) neuron** is an early mathematical model of a biolo
 
 The output is:
 
-[
-y =
+$$
+y = 
 \begin{cases}
-1, & \text{if weighted sum} \geq \theta\
+1, & \text{if weighted sum} \ge \theta\\
 0, & \text{if weighted sum} < \theta
 \end{cases}
-]
+$$
 
 For the following examples, assume every connection has weight **1**, unless mentioned otherwise.
 
@@ -39,33 +39,31 @@ The AND gate produces **1 only when both inputs are 1**.
 
 ### Required threshold
 
-[
-\boxed{\theta=2}
-]
+$$\boxed{\theta = 2}$$
 
 ### Working
 
 For (A=1, B=1):
 
-[
-A+B=1+1=2
-]
+$$
+A + B = 1 + 1 = 2
+$$
 
 Since:
 
-[
-2\geq2
-]
+$$
+2 \ge 2
+$$
 
-[
-Y=1
-]
+$$
+Y = 1
+$$
 
 For any other combination, the sum is at most 1, so:
 
-[
-Y=0
-]
+$$
+Y = 0
+$$
 
 ### Truth Table
 
@@ -99,27 +97,25 @@ The OR gate produces **1 when at least one input is 1**.
 
 ### Required threshold
 
-[
-\boxed{\theta=1}
-]
+$$\boxed{\theta = 1}$$
 
 ### Working
 
 If (A=1,B=0):
 
-[
-A+B=1
-]
+$$
+A + B = 1
+$$
 
 Since:
 
-[
-1\geq1
-]
+$$
+1 \ge 1
+$$
 
-[
-Y=1
-]
+$$
+Y = 1
+$$
 
 Similarly, if (A=0,B=1), the output is also 1.
 
@@ -140,9 +136,7 @@ Therefore, an M-P neuron with **weights = 1 and threshold = 1** implements an OR
 
 A NOT gate has **one input** and produces the opposite output.
 
-[
-Y=\overline A
-]
+$$Y = \overline{A}$$
 
 For NOT, we use a **negative weight**.
 
@@ -155,47 +149,43 @@ For NOT, we use a **negative weight**.
 
 ### Required parameters
 
-[
-\boxed{w=-1}
-]
+$$\boxed{w = -1}$$
 
-[
-\boxed{\theta=0}
-]
+$$\boxed{\theta = 0}$$
 
 ### Working
 
 If (A=0):
 
-[
-(-1)(0)=0
-]
+$$
+(-1)(0) = 0
+$$
 
 Since:
 
-[
-0\geq0
-]
+$$
+0 \ge 0
+$$
 
-[
-Y=1
-]
+$$
+Y = 1
+$$
 
 If (A=1):
 
-[
-(-1)(1)=-1
-]
+$$
+(-1)(1) = -1
+$$
 
 Since:
 
-[
--1<0
-]
+$$
+-1 < 0
+$$
 
-[
-Y=0
-]
+$$
+Y = 0
+$$
 
 ### Truth Table
 
@@ -222,12 +212,10 @@ Therefore, a single M-P neuron with **weight = −1 and threshold = 0** implemen
 
 The M-P neuron implements Boolean logic by using:
 
-[
-\boxed{\text{Weighted Sum + Threshold} \rightarrow \text{Binary Output}}
-]
+$$\boxed{\text{Weighted Sum + Threshold} \rightarrow \text{Binary Output}}$$
 
 By choosing appropriate **weights and thresholds**, a single M-P neuron can implement basic logical functions such as **AND, OR, and NOT**.
 
 ## Conclusion
 
-McCulloch–Pitts neurons provide a simple mathematical way to implement Boolean logic. An **AND gate** requires a threshold of 2, an **OR gate** requires a threshold of 1, and a **NOT gate** can be implemented using a negative weight and threshold 0. These simple logical operations were an important foundation for the development of **perceptrons and modern artificial neural networks**.
+McCulloch–Pitts neurons provide a simple mathematical way to implement Boolean logic. An **AND gate** requires a threshold of 2, an **OR gate** requires a threshold of 1, and a **NOT gate** can be implemented with a negative weight and threshold 0.
