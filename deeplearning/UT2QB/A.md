@@ -20,19 +20,17 @@ In standard batch Gradient Descent, the gradient is calculated using the entire 
 
 In **SGD**, the weights are updated using **one training example at a time**.
 
-The update equation is:
+The update equation is written as display math:
 
-[
-\boxed{
-W_{t+1}=W_t-\eta\nabla L(W_t)
-}
-]
+$$
+W_{t+1} = W_t - \eta \nabla L(W_t)
+$$
 
 where:
 
-* (W_t) = current weights
-* (\eta) = learning rate
-* (\nabla L(W_t)) = gradient of loss
+* $W_t$ = current weights
+* $\eta$ = learning rate
+* $\nabla L(W_t)$ = gradient of loss
 
 ### Advantages
 
@@ -53,25 +51,21 @@ Momentum improves SGD by remembering part of the **previous update direction**.
 
 Instead of using only the current gradient, it maintains a velocity:
 
-[
-\boxed{
-v_t=\beta v_{t-1}+\nabla L(W_t)
-}
-]
+$$
+v_t = \beta v_{t-1} + \nabla L(W_t)
+$$
 
-Then:
+Then the weights are updated using this velocity:
 
-[
-\boxed{
-W_{t+1}=W_t-\eta v_t
-}
-]
+$$
+W_{t+1} = W_t - \eta v_t
+$$
 
 where:
 
-* (v_t) = velocity
-* (\beta) = momentum coefficient, usually close to 1
-* (\eta) = learning rate
+* $v_t$ = velocity
+* $\beta$ = momentum coefficient, usually close to 1
+* $\eta$ = learning rate
 
 ### Intuition
 
@@ -92,7 +86,7 @@ Imagine:
 
 ```text
           ↕ oscillation
-        /\/\/\/\/\/\/\
+        /\/\/\/\/\/\/\/\
        /              \
       /                \
      /__________________\
@@ -113,13 +107,11 @@ With ordinary SGD, the optimizer tends to:
 
 Momentum reduces these oscillations.
 
-genui{"functions_lines_sequences_learning_block_staging":{"type_id":"GRAPHABLE_FUNCTION","content":"y=x^2"}}
-
 Conceptually:
 
-[
-\boxed{\text{Momentum}=\text{current gradient}+\text{memory of previous movement}}
-]
+$$
+\text{Momentum} = \text{current gradient} + \text{memory of previous movement}
+$$
 
 If successive gradients point in roughly the same direction, momentum accumulates them and speeds up movement.
 
@@ -137,31 +129,27 @@ The key difference is that NAG calculates the gradient **after looking ahead in 
 
 First calculate the look-ahead position:
 
-[
-W_t^{lookahead}=W_t-\eta\beta v_{t-1}
-]
+$$
+W_t^{\text{lookahead}} = W_t - \eta \beta v_{t-1}
+$$
 
 Then calculate the gradient at this look-ahead position:
 
-[
-g_t=\nabla L(W_t-\eta\beta v_{t-1})
-]
+$$
+g_t = \nabla L\bigl(W_t - \eta \beta v_{t-1}\bigr)
+$$
 
 The velocity is then updated:
 
-[
-\boxed{
-v_t=\beta v_{t-1}+g_t
-}
-]
+$$
+v_t = \beta v_{t-1} + g_t
+$$
 
 and the weights are updated:
 
-[
-\boxed{
-W_{t+1}=W_t-\eta v_t
-}
-]
+$$
+W_{t+1} = W_t - \eta v_t
+$$
 
 ### Simple idea
 
@@ -198,21 +186,21 @@ The easiest way to remember:
 
 ### SGD
 
-[
-\boxed{\text{Current gradient only}}
-]
+$$
+\text{Current gradient only}
+$$
 
 ### Momentum
 
-[
-\boxed{\text{Current gradient + previous velocity}}
-]
+$$
+\text{Current gradient + previous velocity}
+$$
 
 ### NAG
 
-[
-\boxed{\text{Look ahead + gradient + previous velocity}}
-]
+$$
+\text{Look ahead + gradient + previous velocity}
+$$
 
 ---
 
@@ -266,4 +254,4 @@ It looks ahead and adjusts the direction before overshooting as much.
 
 ## 10. Conclusion
 
-**SGD** updates weights using the current gradient and is simple but can produce noisy, oscillating updates. **Momentum-based GD** adds memory of previous updates, reducing oscillations and accelerating movement in consistent directions. **NAG** improves momentum by calculating the gradient at a look-ahead position, allowing the optimizer to anticipate the direction of the loss surface. Momentum is especially useful in **ravines**, where it suppresses oscillations across the steep direction and helps the optimizer move efficiently toward the minimum.
+**SGD** updates weights using the current gradient and is simple but can produce noisy, oscillating updates. **Momentum-based GD** adds memory of previous updates, reducing oscillations and accelerating convergence. **NAG** further improves momentum by looking ahead and often gives more responsive updates near minima.
