@@ -69,7 +69,7 @@ More explicitly:
 ```
 
 The hidden neurons are designed as:
-
+$$
 [
 H_1=A\ OR\ B
 ]
@@ -83,7 +83,7 @@ Then:
 [
 Y=H_1\ AND\ H_2
 ]
-
+$$
 ---
 
 # 4. Weights and Thresholds
