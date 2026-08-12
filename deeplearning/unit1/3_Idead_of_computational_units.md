@@ -1,6 +1,6 @@
 # Topic 3: Idea of Computational Units (Artificial Neuron)
 
-Now that we understand how a **biological neuron** works, let's see how scientists converted it into a **mathematical model** that computers can understand. This model is called a **Computational Unit** or **Artificial Neuron**.
+Now that we understand how a **biological neuron** works, let's see how scientists converted it into a **mathematical model** that computers can understand. This model is called a **Computational Unit[...] 
 
 ---
 
@@ -30,7 +30,7 @@ An **artificial neuron** works exactly the same way.
 
 # What is a Computational Unit?
 
-A **Computational Unit (Artificial Neuron)** is the basic building block of an Artificial Neural Network (ANN). It receives multiple inputs, multiplies each input by a weight, adds them together, applies an activation function, and produces an output.
+A **Computational Unit (Artificial Neuron)** is the basic building block of an Artificial Neural Network (ANN). It receives multiple inputs, multiplies each input by a weight, adds them together, appl[...] 
 
 ---
 
@@ -71,23 +71,23 @@ Activation Function
 
 The neuron first calculates the weighted sum:
 
-[
-z = x_1w_1 + x_2w_2 + x_3w_3 + b
-]
+$$
+z = x_1 w_1 + x_2 w_2 + x_3 w_3 + b
+$$
 
 Then applies an activation function:
 
-[
+$$
 y = f(z)
-]
+$$
 
 Where:
 
-* **x** = Inputs
-* **w** = Weights
-* **b** = Bias
-* **f()** = Activation Function
-* **y** = Output
+* $x$ = Inputs
+* $w$ = Weights
+* $b$ = Bias
+* $f(\cdot)$ = Activation Function
+* $y$ = Output
 
 This is one of the **most important formulas** in Deep Learning.
 
@@ -127,52 +127,52 @@ Suppose:
 
 Inputs:
 
-* x₁ = 2
-* x₂ = 4
-* x₃ = 3
+* $x_1 = 2$
+* $x_2 = 4$
+* $x_3 = 3$
 
 Weights:
 
-* w₁ = 0.5
-* w₂ = 0.2
-* w₃ = 0.4
+* $w_1 = 0.5$
+* $w_2 = 0.2$
+* $w_3 = 0.4$
 
 Bias:
 
-* b = 1
+* $b = 1$
 
 ### Step 1: Calculate Weighted Sum
 
-[
+$$
 z = (2 \times 0.5) + (4 \times 0.2) + (3 \times 0.4) + 1
-]
+$$
 
-[
+$$
 z = 1 + 0.8 + 1.2 + 1
-]
+$$
 
-[
+$$
 z = 4
-]
+$$
 
 ### Step 2: Apply Activation Function
 
 Assume a simple threshold activation:
 
-* If z ≥ 3 → Output = 1
+* If $z \geq 3$ → Output = 1
 * Otherwise → Output = 0
 
 Since:
 
-[
+$$
 4 \geq 3
-]
+$$
 
 Output:
 
-[
+$$
 y = 1
-]
+$$
 
 The neuron "fires."
 
@@ -238,7 +238,7 @@ All start with this simple computational unit.
 
 **Artificial Neuron (Computational Unit):**
 
-An artificial neuron is a mathematical model inspired by the biological neuron. It receives multiple inputs, multiplies them by weights, adds a bias, applies an activation function, and produces an output.
+An artificial neuron is a mathematical model inspired by the biological neuron. It receives multiple inputs, multiplies them by weights, adds a bias, applies an activation function, and produces an ou[...] 
 
 ---
 
@@ -257,15 +257,15 @@ An artificial neuron is a mathematical model inspired by the biological neuron. 
 
 Weighted Sum:
 
-[
-z = \sum (x_i w_i) + b
-]
+$$
+z = \sum_{i} x_i w_i + b
+$$
 
 Output:
 
-[
+$$
 y = f(z)
-]
+$$
 
 These two equations are the foundation of all neural networks.
 
@@ -305,10 +305,10 @@ These two equations are the foundation of all neural networks.
 
 A neuron has:
 
-* x₁ = 3, w₁ = 0.4
-* x₂ = 5, w₂ = 0.6
+* $x_1 = 3, \; w_1 = 0.4$
+* $x_2 = 5, \; w_2 = 0.6$
 * Bias = 1
 
-Calculate the weighted sum (z). If the activation function outputs **1** when (z \geq 5), what will be the output?
+Calculate the weighted sum ($z$). If the activation function outputs **1** when ($z \geq 5$), what will be the output?
 
 **Next Topic:** **History of Deep Learning**, where we'll trace the evolution of neural networks from the **McCulloch-Pitts Neuron (1943)** to today's modern deep learning models like Transformers.
