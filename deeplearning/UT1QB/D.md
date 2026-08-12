@@ -2,7 +2,7 @@
 
 ## 1. Introduction
 
-A **loss function** measures how different the model's predicted output is from the actual target output. During training, the neural network tries to **minimize the loss** by adjusting its weights and biases.
+A **loss function** measures how different the model's predicted output is from the actual target output. During training, the neural network tries to **minimize the loss** by adjusting its weights[...]
 
 Two important loss functions are:
 
@@ -21,48 +21,41 @@ The choice of loss function depends mainly on whether the problem is **regressio
 
 The formula is:
 
-[
-MSE=\frac{1}{n}\sum_{i=1}^{n}(y_i-\hat{y}_i)^2
-]
+$$
+\mathrm{MSE} = \frac{1}{n}\sum_{i=1}^{n}\bigl(y_i - \hat{y}_i\bigr)^2
+$$
 
 Where:
 
-* (n) = number of samples
-* (y_i) = actual value
-* (\hat{y}_i) = predicted value
+* $n$ = number of samples  
+* $y_i$ = actual value  
+* $\hat{y}_i$ = predicted value
 
 ### Example
 
 Suppose actual values are:
 
-[
-y=[2,4,6]
-]
+$y = [2,\,4,\,6]$
 
 and predictions are:
 
-[
-\hat y=[3,5,5]
-]
+$\hat{y} = [3,\,5,\,5]$
 
 Then:
 
-[
-MSE=\frac{(2-3)^2+(4-5)^2+(6-5)^2}{3}
-]
-
-[
-=\frac{1+1+1}{3}=1
-]
+$$
+\mathrm{MSE} = \frac{(2-3)^2 + (4-5)^2 + (6-5)^2}{3}
+       = \frac{1 + 1 + 1}{3} = 1
+$$
 
 Therefore, the MSE is **1**.
 
 ### Characteristics of MSE
 
-* Squares the prediction error.
-* Large errors are penalized more heavily.
-* Always produces a **non-negative value**.
-* (MSE=0) means predictions are exactly correct.
+* Squares the prediction error.  
+* Large errors are penalized more heavily.  
+* Always produces a **non-negative value**.  
+* $\mathrm{MSE}=0$ means predictions are exactly correct.  
 * It is differentiable and suitable for gradient-based optimization.
 
 ---
@@ -73,15 +66,15 @@ MSE is mainly preferred for **regression problems**, where the output is a conti
 
 ### Examples:
 
-* Predicting house prices
-* Predicting temperature
-* Predicting sales
-* Predicting student marks
+* Predicting house prices  
+* Predicting temperature  
+* Predicting sales  
+* Predicting student marks  
 * Predicting stock values
 
 For example:
 
-> Actual house price = ₹50 lakh
+> Actual house price = ₹50 lakh  
 > Predicted house price = ₹48 lakh
 
 MSE can measure the numerical difference between these values.
@@ -98,22 +91,22 @@ MSE can also be used in some neural-network applications with continuous outputs
 
 For binary classification, Binary Cross-Entropy is:
 
-[
-L=-[y\log(\hat y)+(1-y)\log(1-\hat y)]
-]
+$$
+L = -\bigl[y\log(\hat{y}) + (1-y)\log(1-\hat{y})\bigr]
+$$
 
 Where:
 
-* (y) = actual label (0 or 1)
-* (\hat y) = predicted probability of class 1
+* $y$ = actual label (0 or 1)  
+* $\hat{y}$ = predicted probability of class 1
 
 For multiple classes, categorical cross-entropy is:
 
-[
-L=-\sum_{i=1}^{C}y_i\log(\hat y_i)
-]
+$$
+L = -\sum_{i=1}^{C} y_i \log(\hat{y}_i)
+$$
 
-where (C) is the number of classes.
+where $C$ is the number of classes.
 
 ---
 
@@ -121,35 +114,29 @@ where (C) is the number of classes.
 
 Suppose the actual class is:
 
-[
-y=1
-]
+$y = 1$
 
 and the model predicts:
 
-[
-\hat y=0.9
-]
+$\hat{y} = 0.9$
 
 Then:
 
-[
-L=-\log(0.9)
-]
+$$
+L = -\log(0.9)
+$$
 
 which gives a small loss.
 
 Now suppose the model predicts:
 
-[
-\hat y=0.1
-]
+$\hat{y} = 0.1$
 
 Then:
 
-[
-L=-\log(0.1)
-]
+$$
+L = -\log(0.1)
+$$
 
 which gives a much larger loss.
 
@@ -163,33 +150,33 @@ Cross-Entropy is mainly preferred for **classification problems**.
 
 ### Examples:
 
-* Spam vs non-spam classification
-* Disease vs healthy classification
-* Cat vs dog classification
-* Digit classification
+* Spam vs non-spam classification  
+* Disease vs healthy classification  
+* Cat vs dog classification  
+* Digit classification  
 * Multi-class image classification
 
 It is commonly paired with:
 
-* **Sigmoid + Binary Cross-Entropy** → binary classification
+* **Sigmoid + Binary Cross-Entropy** → binary classification  
 * **Softmax + Categorical Cross-Entropy** → multi-class classification
 
 ---
 
 # 7. MSE vs Cross-Entropy
 
-| **Feature**                | **MSE**                       | **Cross-Entropy**                             |
-| -------------------------- | ----------------------------- | --------------------------------------------- |
-| Full form                  | Mean Squared Error            | Cross-Entropy Loss                            |
-| Main use                   | Regression                    | Classification                                |
-| Formula                    | (\frac{1}{n}\sum(y-\hat y)^2) | (-\sum y\log(\hat y))                         |
-| Measures                   | Squared numerical error       | Difference between probability distributions  |
-| Output                     | Non-negative                  | Non-negative                                  |
-| Large errors               | Penalized strongly            | Confident wrong predictions heavily penalized |
-| Common activation          | Linear output                 | Sigmoid/Softmax                               |
-| Example                    | House-price prediction        | Image classification                          |
-| Classification suitability | Generally less suitable       | Highly suitable                               |
-| Probability interpretation | Not naturally probabilistic   | Naturally works with predicted probabilities  |
+| **Feature**                | **MSE**                                               | **Cross-Entropy**                             |
+| -------------------------- | ----------------------------------------------------- | --------------------------------------------- |
+| Full form                  | Mean Squared Error                                    | Cross-Entropy Loss                            |
+| Main use                   | Regression                                            | Classification                                |
+| Formula                    | $\dfrac{1}{n}\sum (y - \hat{y})^2$                    | $-\sum y\log(\hat{y})$                        |
+| Measures                   | Squared numerical error                               | Difference between probability distributions  |
+| Output                     | Non-negative                                          | Non-negative                                  |
+| Large errors               | Penalized strongly                                    | Confident wrong predictions heavily penalized |
+| Common activation          | Linear output                                         | Sigmoid/Softmax                               |
+| Example                    | House-price prediction                                | Image classification                          |
+| Classification suitability | Generally less suitable                               | Highly suitable                               |
+| Probability interpretation | Not naturally probabilistic                           | Naturally works with predicted probabilities  |
 
 ---
 
@@ -213,4 +200,4 @@ Predicting:
 
 # 9. Conclusion
 
-**MSE** calculates the average squared difference between actual and predicted values and is primarily preferred for **regression problems**. **Cross-Entropy** measures the difference between actual and predicted probability distributions and is preferred for **classification problems**. MSE is particularly sensitive to large numerical errors, while Cross-Entropy strongly penalizes confident incorrect classifications. Therefore, selecting the appropriate loss function is important for efficient neural-network training.
+**MSE** calculates the average squared difference between actual and predicted values and is primarily preferred for **regression problems**. **Cross-Entropy** measures the difference between actual and predicted probability distributions and is primarily preferred for **classification problems**.
