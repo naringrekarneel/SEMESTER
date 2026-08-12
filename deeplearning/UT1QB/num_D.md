@@ -1,20 +1,4 @@
-Yep — this is a straightforward **forward-pass numerical**. The formatting of the question is a little broken, so I’ll interpret the weight matrix as:
-
-[
-W=
-\begin{bmatrix}
-0.1 & 0.3\
-0.2 & 0.4
-\end{bmatrix}
-]
-
-and
-
-[
-x=[0.5,0.8],\qquad b=[0.1,0.1]
-]
-
-Assuming the question expects a **Sigmoid activation**, here's the complete 10-mark solution.
+Yep — this is a straightforward **forward-pass numerical**. The original question's formatting was a bit broken, so I've rewritten the math using standard LaTeX math blocks for clearer visuals. I interpret the weight matrix and vectors as below.
 
 # Forward Pass in a Feedforward Neural Network — 10 Marks
 
@@ -22,244 +6,140 @@ Assuming the question expects a **Sigmoid activation**, here's the complete 10-m
 
 Input vector:
 
-[
-x=
-\begin{bmatrix}
-0.5\
-0.8
-\end{bmatrix}
-]
+$$
+x = \begin{bmatrix} 0.5 \\ 0.8 \end{bmatrix}
+$$
 
 Weight matrix:
 
-[
-W=
-\begin{bmatrix}
-0.1 & 0.3\
-0.2 & 0.4
-\end{bmatrix}
-]
+$$
+W = \begin{bmatrix} 0.1 & 0.3 \\ 0.2 & 0.4 \end{bmatrix}
+$$
 
 Bias:
 
-[
-b=
-\begin{bmatrix}
-0.1\
-0.1
-\end{bmatrix}
-]
+$$
+b = \begin{bmatrix} 0.1 \\ 0.1 \end{bmatrix}
+$$
 
-We use the **Sigmoid activation function**:
+We use the **sigmoid activation function**:
 
-[
-\sigma(z)=\frac{1}{1+e^{-z}}
-]
+$$
+\sigma(z) = \frac{1}{1 + e^{-z}}
+$$
 
 ---
 
-## 2. Forward-Pass Formula
+## 2. Forward-pass formula
 
 The basic forward-pass equation is:
 
-[
-z=Wx+b
-]
+$$
+z = W x + b
+$$
 
 Then the activation/output is:
 
-[
-a=\sigma(z)
-]
+$$
+a = \sigma(z)
+$$
 
-So we first calculate the weighted sum.
+So we first calculate the weighted sum $Wx$.
 
 ---
 
-## 3. Calculate (Wx)
+## 3. Calculate $Wx$
 
-[
-Wx=
-\begin{bmatrix}
-0.1 & 0.3\
-0.2 & 0.4
-\end{bmatrix}
-\begin{bmatrix}
-0.5\
-0.8
-\end{bmatrix}
-]
+Matrix multiplication:
+
+$$
+Wx = \begin{bmatrix} 0.1 & 0.3 \\ 0.2 & 0.4 \end{bmatrix} \begin{bmatrix} 0.5 \\ 0.8 \end{bmatrix}
+$$
+
+Compute component-wise:
 
 For the first neuron:
 
-[
-z_1=(0.1)(0.5)+(0.3)(0.8)
-]
-
-[
-z_1=0.05+0.24
-]
-
-[
-z_1=0.29
-]
+$$
+z_1 = 0.1 \cdot 0.5 + 0.3 \cdot 0.8 = 0.05 + 0.24 = 0.29
+$$
 
 For the second neuron:
 
-[
-z_2=(0.2)(0.5)+(0.4)(0.8)
-]
+$$
+z_2 = 0.2 \cdot 0.5 + 0.4 \cdot 0.8 = 0.10 + 0.32 = 0.42
+$$
 
-[
-z_2=0.10+0.32
-]
+So
 
-[
-z_2=0.42
-]
-
-Therefore:
-
-[
-Wx=
-\begin{bmatrix}
-0.29\
-0.42
-\end{bmatrix}
-]
+$$
+Wx = \begin{bmatrix} 0.29 \\ 0.42 \end{bmatrix}
+$$
 
 ---
 
-## 4. Add Bias
+## 4. Add bias
 
-Now:
+Now add the bias vector:
 
-[
-z=Wx+b
-]
+$$
+z = Wx + b = \begin{bmatrix} 0.29 \\ 0.42 \end{bmatrix} + \begin{bmatrix} 0.1 \\ 0.1 \end{bmatrix} = \begin{bmatrix} 0.39 \\ 0.52 \end{bmatrix}
+$$
 
-[
-z=
-\begin{bmatrix}
-0.29\
-0.42
-\end{bmatrix}
-+
-\begin{bmatrix}
-0.1\
-0.1
-\end{bmatrix}
-]
+Hence
 
-Therefore:
-
-[
-\boxed{
-z=
-\begin{bmatrix}
-0.39\
-0.52
-\end{bmatrix}
-}
-]
+$$
+z = \begin{bmatrix} 0.39 \\ 0.52 \end{bmatrix}
+$$
 
 ---
 
-## 5. Apply Sigmoid Activation
+## 5. Apply sigmoid activation
 
-The sigmoid function is:
+Using $\sigma(z)=\dfrac{1}{1+e^{-z}}$:
 
-[
-\sigma(z)=\frac{1}{1+e^{-z}}
-]
+First neuron:
 
-### First neuron
+$$
+a_1 = \sigma(0.39) = \frac{1}{1 + e^{-0.39}} \approx 0.5963
+$$
 
-[
-a_1=\frac{1}{1+e^{-0.39}}
-]
+Second neuron:
 
-[
-a_1\approx0.5963
-]
+$$
+a_2 = \sigma(0.52) = \frac{1}{1 + e^{-0.52}} \approx 0.6271
+$$
 
-### Second neuron
+Therefore the final output vector is:
 
-[
-a_2=\frac{1}{1+e^{-0.52}}
-]
-
-[
-a_2\approx0.6271
-]
-
-Therefore, the final output is:
-
-[
-\boxed{
-a=
-\begin{bmatrix}
-0.5963\
-0.6271
-\end{bmatrix}
-}
-]
+$$
+a = \begin{bmatrix} 0.5963 \\ 0.6271 \end{bmatrix}
+$$
 
 ---
 
-## 6. Complete Forward Pass
+## 6. Complete forward pass (summary)
 
-The complete calculation can be summarized as:
+Compactly:
 
-[
-\boxed{z=Wx+b}
-]
+$$
+z = W x + b = \begin{bmatrix} 0.1 & 0.3 \\ 0.2 & 0.4 \end{bmatrix} \begin{bmatrix} 0.5 \\ 0.8 \end{bmatrix} + \begin{bmatrix} 0.1 \\ 0.1 \end{bmatrix} = \begin{bmatrix} 0.39 \\ 0.52 \end{bmatrix}
+$$
 
-# [
+After the sigmoid activation:
 
-\begin{bmatrix}
-0.1&0.3\
-0.2&0.4
-\end{bmatrix}
-\begin{bmatrix}
-0.5\
-0.8
-\end{bmatrix}
-+
-\begin{bmatrix}
-0.1\
-0.1
-\end{bmatrix}
-]
+$$
+a = \sigma(z) = \begin{bmatrix} 0.5963 \\ 0.6271 \end{bmatrix}
+$$
 
-# [
+### Final answer
 
-\begin{bmatrix}
-0.39\
-0.52
-\end{bmatrix}
-]
+$$
+\text{Forward pass output } = \begin{bmatrix} 0.5963 \\ 0.6271 \end{bmatrix}
+$$
 
-After sigmoid:
+**Exam tip:** Remember the forward-pass sequence as
 
-[
-\boxed{
-a=
-\begin{bmatrix}
-0.5963\
-0.6271
-\end{bmatrix}
-}
-]
-
-### Final Answer
-
-[
-\boxed{\text{Forward Pass Output}=[0.5963,;0.6271]}
-]
-
-**Exam tip:** Remember the forward-pass sequence as:
-
-[
-\boxed{\text{Input}\rightarrow\text{Weighted Sum }(Wx+b)\rightarrow\text{Activation}\rightarrow\text{Output}}
-]
+$$
+\boxed{\text{Input} \rightarrow \text{Weighted sum }(Wx+b) \rightarrow \text{Activation} \rightarrow \text{Output}}
+$$
