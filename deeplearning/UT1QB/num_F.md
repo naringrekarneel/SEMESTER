@@ -4,25 +4,31 @@
 
 Inputs:
 
-[
-x_1=0.6,\qquad x_2=0.3
-]
+$$
+x_1 = 0.6,
+\quad
+x_2 = 0.3
+$$
 
 Hidden-layer weights:
 
-[
-w_{11}=0.2,\quad w_{12}=0.4
-]
+$$
+\begin{aligned}
+w_{11} &= 0.2, & w_{12} &= 0.4 \\
+\end{aligned}
+$$
 
-[
-w_{21}=0.5,\quad w_{22}=0.1
-]
+$$
+\begin{aligned}
+w_{21} &= 0.5, & w_{22} &= 0.1
+\end{aligned}
+$$
 
 Biases:
 
-[
-b_1=0.1,\qquad b_2=0.2
-]
+$$
+b_1 = 0.1,\quad b_2 = 0.2
+$$
 
 Hidden-layer activation: **ReLU**
 
@@ -54,31 +60,30 @@ x₂ = 0.3 ─────►│ H₂            │──────► Output
 
 The weighted sum for a neuron is:
 
-[
-z=w_1x_1+w_2x_2+b
-]
+$$
+z = w_1 x_1 + w_2 x_2 + b
+$$
 
 ### Hidden neuron 1
 
 Using:
 
-[
-w_{11}=0.2,\quad w_{12}=0.4,\quad b_1=0.1
-]
+$$
+w_{11} = 0.2, \quad w_{12} = 0.4, \quad b_1 = 0.1
+$$
 
 we get:
 
-[
-z_1=(0.2)(0.6)+(0.4)(0.3)+0.1
-]
+$$
+\begin{aligned}
+z_1 &= w_{11} x_1 + w_{12} x_2 + b_1 \\
+&= (0.2)(0.6) + (0.4)(0.3) + 0.1 \\
+&= 0.12 + 0.12 + 0.1 \\
+&= 0.34
+\end{aligned}
+$$
 
-[
-=0.12+0.12+0.1
-]
-
-[
-\boxed{z_1=0.34}
-]
+\boxed{z_1 = 0.34}
 
 ---
 
@@ -86,23 +91,22 @@ z_1=(0.2)(0.6)+(0.4)(0.3)+0.1
 
 Using:
 
-[
-w_{21}=0.5,\quad w_{22}=0.1,\quad b_2=0.2
-]
+$$
+w_{21} = 0.5, \quad w_{22} = 0.1, \quad b_2 = 0.2
+$$
 
 we get:
 
-[
-z_2=(0.5)(0.6)+(0.1)(0.3)+0.2
-]
+$$
+\begin{aligned}
+z_2 &= w_{21} x_1 + w_{22} x_2 + b_2 \\
+&= (0.5)(0.6) + (0.1)(0.3) + 0.2 \\
+&= 0.30 + 0.03 + 0.20 \\
+&= 0.53
+\end{aligned}
+$$
 
-[
-=0.30+0.03+0.20
-]
-
-[
-\boxed{z_2=0.53}
-]
+\boxed{z_2 = 0.53}
 
 ---
 
@@ -110,25 +114,25 @@ z_2=(0.5)(0.6)+(0.1)(0.3)+0.2
 
 The ReLU function is:
 
-[
-ReLU(z)=\max(0,z)
-]
+$$
+\operatorname{ReLU}(z) = \max(0, z)
+$$
 
 Since both values are positive:
 
-[
-h_1=ReLU(0.34)=0.34
-]
+$$
+h_1 = \operatorname{ReLU}(0.34) = 0.34
+$$
 
-[
-h_2=ReLU(0.53)=0.53
-]
+$$
+h_2 = \operatorname{ReLU}(0.53) = 0.53
+$$
 
 Therefore, the hidden-layer output is:
 
-[
-\boxed{H=[0.34,;0.53]}
-]
+$$
+H = \begin{bmatrix} 0.34 \\ 0.53 \end{bmatrix}
+$$
 
 ---
 
@@ -140,9 +144,9 @@ So, to compute a numerical Softmax output, we need to make an assumption.
 
 The simplest interpretation is that the hidden outputs themselves are the two output logits:
 
-[
-z_{out}=[0.34,;0.53]
-]
+$$
+z_{\text{out}} = \begin{bmatrix} 0.34 \\ 0.53 \end{bmatrix}
+$$
 
 Then Softmax is applied directly to these values.
 
@@ -152,51 +156,39 @@ Then Softmax is applied directly to these values.
 
 The Softmax function is:
 
-[
-Softmax(z_i)=\frac{e^{z_i}}{\sum_j e^{z_j}}
-]
+$$
+\operatorname{Softmax}(z_i) = \frac{e^{z_i}}{\sum_j e^{z_j}}
+$$
 
 For the first output:
 
-[
-P_1=\frac{e^{0.34}}{e^{0.34}+e^{0.53}}
-]
+$$
+P_1 = \frac{e^{0.34}}{e^{0.34} + e^{0.53}}
+$$
 
 For the second output:
 
-[
-P_2=\frac{e^{0.53}}{e^{0.34}+e^{0.53}}
-]
+$$
+P_2 = \frac{e^{0.53}}{e^{0.34} + e^{0.53}}
+$$
 
-Using:
+Using numerical approximations:
 
-[
-e^{0.34}\approx1.4049
-]
-
-[
-e^{0.53}\approx1.6989
-]
+$$
+e^{0.34} \approx 1.4049, \quad e^{0.53} \approx 1.6989
+$$
 
 Therefore:
 
-[
-P_1=\frac{1.4049}{1.4049+1.6989}
-]
+$$
+P_1 = \frac{1.4049}{1.4049 + 1.6989} \approx 0.4526
+$$
 
-[
-P_1\approx0.4526
-]
+and:
 
-And:
-
-[
-P_2=\frac{1.6989}{1.4049+1.6989}
-]
-
-[
-P_2\approx0.5474
-]
+$$
+P_2 = \frac{1.6989}{1.4049 + 1.6989} \approx 0.5474
+$$
 
 ---
 
@@ -204,17 +196,15 @@ P_2\approx0.5474
 
 Therefore, the Softmax output is:
 
-[
-\boxed{
-[0.4526,;0.5474]
-}
-]
+$$
+\boxed{\begin{bmatrix} 0.4526 \\ 0.5474 \end{bmatrix}}
+$$
 
 or approximately:
 
-[
-\boxed{[45.26%,;54.74%]}
-]
+$$
+\boxed{\begin{bmatrix} 45.26\% \\ 54.74\% \end{bmatrix}}
+$$
 
 The second output has the higher probability.
 
@@ -224,14 +214,14 @@ The second output has the higher probability.
 
 | Step           |   Neuron 1 |   Neuron 2 |
 | -------------- | ---------: | ---------: |
-| Weighted sum   |     (0.34) |     (0.53) |
-| ReLU output    |     (0.34) |     (0.53) |
+| Weighted sum   |     0.34   |     0.53   |
+| ReLU output    |     0.34   |     0.53   |
 | Softmax output | **0.4526** | **0.5474** |
 
 ### Final Answer:
 
-[
-\boxed{\text{Output}=[0.4526,;0.5474]}
-]
+$$
+\boxed{\text{Output} = \begin{bmatrix} 0.4526 \\ 0.5474 \end{bmatrix}}
+$$
 
-**Note:** Strictly speaking, a complete two-layer network with a separate output layer needs **output-layer weights and biases**. Since the question doesn't provide them, the calculation above assumes the two ReLU outputs are directly used as the two Softmax logits.
+**Note:** Strictly speaking, a complete two-layer network with a separate output layer needs **output-layer weights and biases**. Since the question doesn't provide them, the calculation above assumes the hidden-layer activations are used directly as logits for the Softmax output.
