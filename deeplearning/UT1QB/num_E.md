@@ -1,3 +1,5 @@
+Here are your notes on the Backpropagation Algorithm, cleaned up and formatted with proper mathematical notation for easy reading and studying.
+
 # Backpropagation Algorithm for a Feedforward Neural Network — 10 Marks
 
 ## 1. Introduction
@@ -18,274 +20,190 @@ Consider a network with:
 
 Let:
 
-* (x) = input vector
-* (W_1,b_1) = weights and bias of hidden layer
-* (W_2,b_2) = weights and bias of output layer
-* (f) = hidden-layer activation
-* (g) = output activation
-* (y) = actual output
-* (\hat y) = predicted output
+* $x$ = input vector
+* $W_1, b_1$ = weights and bias of the hidden layer
+* $W_2, b_2$ = weights and bias of the output layer
+* $f$ = hidden-layer activation function
+* $g$ = output-layer activation function
+* $y$ = actual output
+* $\hat{y}$ = predicted output
 
 The structure is:
 
 ```text
 Input → Hidden Layer → Output Layer
-  x         h              ŷ
-            ↑
-         W₁, b₁
-                         ↑
-                      W₂, b₂
+  x          h              ŷ
+             ↑
+          W₁, b₁
+                            ↑
+                         W₂, b₂
+
 ```
 
 ---
 
-# 3. Forward Propagation
+## 3. Forward Propagation
 
 First, the input is propagated forward.
 
-### Hidden layer
+### Hidden Layer
 
-[
-z_h=W_1x+b_1
-]
+$$z_h = W_1x + b_1$$
 
 Apply activation:
 
-[
-h=f(z_h)
-]
 
-### Output layer
+$$h = f(z_h)$$
 
-[
-z_o=W_2h+b_2
-]
+### Output Layer
+
+$$z_o = W_2h + b_2$$
 
 Apply activation:
 
-[
-\hat y=g(z_o)
-]
 
-Thus:
+$$\hat{y} = g(z_o)$$
 
-[
-x\rightarrow z_h\rightarrow h\rightarrow z_o\rightarrow\hat y
-]
+Thus, the forward pass follows this path:
+
+
+$$x \rightarrow z_h \rightarrow h \rightarrow z_o \rightarrow \hat{y}$$
 
 ---
 
-# 4. Calculate the Loss
+## 4. Calculate the Loss
 
-Assume Mean Squared Error for a single training example:
+Assume the Mean Squared Error (MSE) for a single training example:
 
-[
-L=\frac{1}{2}(y-\hat y)^2
-]
 
-The objective is to minimize (L).
+$$L = \frac{1}{2}(y - \hat{y})^2$$
 
-The derivative with respect to the predicted output is:
+The objective is to minimize $L$.
 
-[
-\frac{\partial L}{\partial\hat y}=\hat y-y
-]
+The derivative of the loss with respect to the predicted output is:
+
+
+$$\frac{\partial L}{\partial\hat{y}} = \hat{y} - y$$
 
 ---
 
-# 5. Chain Rule in Backpropagation
+## 5. Chain Rule in Backpropagation
 
 The **chain rule** allows us to calculate how much a particular weight contributes to the final error.
 
-For an output-layer weight (W_2):
+For an output-layer weight $W_2$:
 
-[
-\frac{\partial L}{\partial W_2}
-===============================
 
-\frac{\partial L}{\partial\hat y}
-\frac{\partial\hat y}{\partial z_o}
-\frac{\partial z_o}{\partial W_2}
-]
-
-genui{"functions_lines_sequences_learning_block_staging":{"type_id":"GRAPHABLE_FUNCTION","content":"y=\frac{1}{1+e^{-x}}"}}
+$$\frac{\partial L}{\partial W_2} = \frac{\partial L}{\partial\hat{y}} \frac{\partial\hat{y}}{\partial z_o} \frac{\partial z_o}{\partial W_2}$$
 
 Since:
 
-[
-\frac{\partial L}{\partial\hat y}=\hat y-y
-]
+
+$$\frac{\partial L}{\partial\hat{y}} = \hat{y} - y$$
+
 
 and:
 
-[
-\frac{\partial\hat y}{\partial z_o}=g'(z_o)
-]
 
-we define the output error term:
+$$\frac{\partial\hat{y}}{\partial z_o} = g'(z_o)$$
 
-[
-\boxed{\delta_o=(\hat y-y)g'(z_o)}
-]
+We define the **output error term**:
 
-Therefore:
 
-[
-\boxed{
-\frac{\partial L}{\partial W_2}
-===============================
+$$\delta_o = (\hat{y} - y)g'(z_o)$$
 
-\delta_oh^T
-}
-]
+Therefore, the gradient for the output weights is:
+
+
+$$\frac{\partial L}{\partial W_2} = \delta_o h^T$$
 
 ---
 
-# 6. Gradient for Hidden Layer
+## 6. Gradient for Hidden Layer
 
-Now the error must be propagated from the output layer back to the hidden layer.
+Now the error must be propagated from the output layer back to the hidden layer. Using the chain rule:
 
-Using the chain rule:
 
-[
-\frac{\partial L}{\partial W_1}
-===============================
+$$\frac{\partial L}{\partial W_1} = \frac{\partial L}{\partial\hat{y}} \frac{\partial\hat{y}}{\partial z_o} \frac{\partial z_o}{\partial h} \frac{\partial h}{\partial z_h} \frac{\partial z_h}{\partial W_1}$$
 
-\frac{\partial L}{\partial\hat y}
-\frac{\partial\hat y}{\partial z_o}
-\frac{\partial z_o}{\partial h}
-\frac{\partial h}{\partial z_h}
-\frac{\partial z_h}{\partial W_1}
-]
+The **hidden-layer error term** is:
 
-The hidden-layer error is:
 
-[
-\boxed{
-\delta_h=(W_2^T\delta_o)\odot f'(z_h)
-}
-]
+$$\delta_h = (W_2^T\delta_o) \odot f'(z_h)$$
 
-where:
 
-[
-\odot
-]
+*(Where $\odot$ represents **element-wise multiplication**).*
 
-represents **element-wise multiplication**.
+Therefore, the gradient for the hidden weights is:
 
-Therefore:
 
-[
-\boxed{
-\frac{\partial L}{\partial W_1}
-===============================
+$$\frac{\partial L}{\partial W_1} = \delta_h x^T$$
 
-\delta_hx^T
-}
-]
-
-This is the key idea of backpropagation: **the error at a layer depends on the error from the layer ahead of it multiplied by the local derivative.**
+> **Key Concept:** The error at a given layer depends on the error from the layer ahead of it, multiplied by the local derivative.
 
 ---
 
-# 7. Weight Update Using Gradient Descent
+## 7. Weight Update Using Gradient Descent
 
 Once gradients are calculated, weights are updated using:
 
-[
-W^{new}=W-\eta\frac{\partial L}{\partial W}
-]
 
-where (\eta) is the **learning rate**.
+$$W^{new} = W - \eta\frac{\partial L}{\partial W}$$
 
-### Output-layer weights
 
-[
-\boxed{
-W_2\leftarrow W_2-\eta\delta_oh^T
-}
-]
+*(Where $\eta$ is the **learning rate**).*
 
-### Hidden-layer weights
+### Output-Layer Updates
 
-[
-\boxed{
-W_1\leftarrow W_1-\eta\delta_hx^T
-}
-]
+$$W_2 \leftarrow W_2 - \eta\delta_o h^T$$
 
-Biases are updated as:
+$$b_2 \leftarrow b_2 - \eta\delta_o$$
 
-[
-\boxed{b_2\leftarrow b_2-\eta\delta_o}
-]
+### Hidden-Layer Updates
 
-[
-\boxed{b_1\leftarrow b_1-\eta\delta_h}
-]
+$$W_1 \leftarrow W_1 - \eta\delta_h x^T$$
+
+$$b_1 \leftarrow b_1 - \eta\delta_h$$
 
 ---
 
-# 8. Complete Mathematical Formulation
+## 8. Complete Mathematical Formulation
 
-The complete algorithm can be summarized as follows:
+The entire algorithm summarized mathematically:
 
-### Forward pass
+### Forward Pass
 
-[
-z_h=W_1x+b_1
-]
+$$z_h = W_1x + b_1$$
 
-[
-h=f(z_h)
-]
+$$h = f(z_h)$$
 
-[
-z_o=W_2h+b_2
-]
+$$z_o = W_2h + b_2$$
 
-[
-\hat y=g(z_o)
-]
+$$\hat{y} = g(z_o)$$
 
 ### Loss
 
-[
-L=\frac12(y-\hat y)^2
-]
+$$L = \frac{1}{2}(y - \hat{y})^2$$
 
-### Backward pass
+### Backward Pass
 
-[
-\delta_o=(\hat y-y)g'(z_o)
-]
+$$\delta_o = (\hat{y} - y)g'(z_o)$$
 
-[
-\delta_h=(W_2^T\delta_o)\odot f'(z_h)
-]
+$$\delta_h = (W_2^T\delta_o) \odot f'(z_h)$$
 
-### Updates
+### Parameter Updates
 
-[
-W_2\leftarrow W_2-\eta\delta_oh^T
-]
+$$W_2 \leftarrow W_2 - \eta\delta_o h^T$$
 
-[
-W_1\leftarrow W_1-\eta\delta_hx^T
-]
+$$W_1 \leftarrow W_1 - \eta\delta_h x^T$$
 
-[
-b_2\leftarrow b_2-\eta\delta_o
-]
+$$b_2 \leftarrow b_2 - \eta\delta_o$$
 
-[
-b_1\leftarrow b_1-\eta\delta_h
-]
+$$b_1 \leftarrow b_1 - \eta\delta_h$$
 
 ---
 
-# 9. Backpropagation Flow
+## 9. Backpropagation Flow
 
 ```text
                  FORWARD
@@ -301,22 +219,13 @@ Input → Hidden → Output → Prediction
                     Hidden Gradient
                            ↓
                     Weight Updates
+
 ```
 
-The important relationship is:
+The fundamental relationship across all layers is:
 
-[
-\boxed{
-\text{Gradient}
-===============
 
-\text{Error}
-\times
-\text{Local Derivative}
-}
-]
-
-The chain rule connects these derivatives across all layers.
+$$\text{Gradient} = \text{Error} \times \text{Local Derivative}$$
 
 ---
 
