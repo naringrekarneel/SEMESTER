@@ -147,11 +147,12 @@ H_2 = f(-A - B)
 $$
 
 Check (sums shown and step activation applied):
-
+$$
 * (A = B = 0): sum = 0 \(\ge -1\) → H_2 = 1
 * (A = 1, B = 0): sum = -1 \(\ge -1\) → H_2 = 1
 * (A = 0, B = 1): sum = -1 \(\ge -1\) → H_2 = 1
 * (A = B = 1): sum = -2 \(< -1\) → H_2 = 0
+$$
 
 So:
 
