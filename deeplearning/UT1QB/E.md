@@ -34,17 +34,13 @@ An MLP can represent:
 
 For example:
 
-[
-y=2x+3
-]
+$$y = 2x + 3$$
 
 ### 2. Non-linear relationships
 
 For example:
 
-[
-y=x^2
-]
+$$y = x^2$$
 
 ### 3. Complex decision boundaries
 
@@ -90,7 +86,7 @@ Without non-linear activation functions, stacking multiple layers would effectiv
 
 The **Universal Approximation Theorem** states that:
 
-> A feed-forward neural network with at least one hidden layer, a sufficient number of hidden neurons, and an appropriate non-linear activation function can approximate any continuous function on a compact input domain to an arbitrarily high degree of accuracy.
+> A feed-forward neural network with at least one hidden layer, a sufficient number of hidden neurons, and an appropriate non-linear activation function can approximate any continuous function on [...]
 
 In simple words:
 
@@ -102,15 +98,11 @@ In simple words:
 
 Suppose we have a complicated function:
 
-[
-y=f(x)
-]
+$$y = f(x)$$
 
 An MLP tries to learn an approximation:
 
-[
-y\approx f(x)
-]
+$$y \approx f(x)$$
 
 By increasing the number of hidden neurons, the network can make the approximation increasingly accurate.
 
@@ -154,7 +146,7 @@ It explains why MLPs can be applied to problems such as:
 * Classification
 * Prediction
 
-However, **"universal" does not mean that one small hidden layer will efficiently solve every problem**. A complex function may require many neurons, layers, training data, and computational resources.
+However, **"universal" does not mean that one small hidden layer will efficiently solve every problem**. A complex function may require many neurons, layers, training data, and computational reso[...]
 
 ---
 
@@ -174,4 +166,4 @@ However, **"universal" does not mean that one small hidden layer will efficientl
 
 ## 10. Conclusion
 
-The **representation power of an MLP** is its ability to represent complex linear and non-linear functions using multiple layers of neurons and non-linear activation functions. Unlike a single perceptron, an MLP can solve problems such as **XOR** and create complex decision boundaries. The **Universal Approximation Theorem** establishes that an MLP with at least one hidden layer and enough suitable neurons can approximate any continuous function on a compact domain with arbitrary accuracy. Thus, MLPs form a fundamental building block of modern deep learning.
+The **representation power of an MLP** is its ability to represent complex linear and non-linear functions using multiple layers of neurons and non-linear activation functions. Unlike a single pe[...]
