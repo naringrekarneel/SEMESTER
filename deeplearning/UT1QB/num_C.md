@@ -146,11 +146,14 @@ $$
 H_2 = f(-A - B)
 $$
 
-Check (sums shown and step activation applied):
-$$ * (A = B = 0): sum = 0 \(\ge -1\) → H_2 = 1
-* (A = 1, B = 0): sum = -1 \(\ge -1\) → H_2 = 1
-* (A = 0, B = 1): sum = -1 \(\ge -1\) → H_2 = 1
-* (A = B = 1): sum = -2 \(< -1\) → H_2 = 0 $$
+\[
+\begin{aligned}
+(A=B=0): &\quad \text{sum}=0 \; (\ge -1) \rightarrow H_2=1,\\
+(A=1,B=0): &\quad \text{sum}=-1 \; (\ge -1) \rightarrow H_2=1,\\
+(A=0,B=1): &\quad \text{sum}=-1 \; (\ge -1) \rightarrow H_2=1,\\
+(A=B=1): &\quad \text{sum}=-2 \; (< -1) \rightarrow H_2=0.
+\end{aligned}
+\]
 
 So:
 
