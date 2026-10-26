@@ -1,20 +1,18 @@
-import numpy as np
-from tensorflow import keras
+import torch
+import torch.nn as nn
+X = torch.tensor([[1.0, 1.0], [1.5, 2.0], [2.0, 3.0], [2.5, 3.0]])
+y = torch.tensor([[1.5], [2.3], [3.1], [3.7]])
 
-X = np.array([[1], [2], [3], [4], [5]], dtype=float)
-y = np.array([[10], [20], [30], [40], [50]], dtype=float)
+model = nn.Linear(2, 1)
+criterion = nn.MSELoss()
+optimizer = torch.optim.SGD(model.parameters(), lr=0.01)
 
-model = keras.Sequential([
-    keras.layers.Input(shape=(1,)),
-    keras.layers.Dense(1)
-])
+for epoch in range(500):
+    pred = model(X)
+    loss = criterion(pred, y)
 
-model.compile(
-    optimizer=keras.optimizers.SGD(learning_rate=0.01),
-    loss="mse"
-)
+    optimizer.zero_grad()
+    loss.backward()
+    optimizer.step()
 
-model.fit(X, y, epochs=2000, verbose=0)
-
-price = model.predict(np.array([[6.0]]), verbose=0)
-print("Predicted price:", round(float(price[0][0]), 2), "lakhs")
+print(model(torch.tensor([[1.8, 2.0]])).item())
